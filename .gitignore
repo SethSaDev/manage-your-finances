@@ -1,0 +1,17 @@
+# .NET
+bin/
+obj/
+
+# Node
+node_modules/
+build/
+
+# IDE
+.vs/
+.vscode/
+*.user
+
+# OS
+.DS_Store
+Thumbs.db
+
