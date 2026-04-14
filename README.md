@@ -1,72 +1,35 @@
-# Expense Tracker
+# Manage Your Finances
 
-A full-stack expense tracking application built with **React** and **.NET 9 Minimal API**. Track income and expenses, visualize spending by category, and manage your finances with an intuitive interface.
+A compact, full-stack app for tracking personal income and expenses. Built with a React frontend and a .NET 9 Minimal API backend, this project helps you record transactions, review spending by category, and export your data when needed.
 
-![React](https://img.shields.io/badge/React-16.12-61DAFB?logo=react&logoColor=white)
-![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=dotnet&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+## Highlights
 
-## Features
+- Clean, responsive UI for quick transaction entry and review
+- Visual breakdown of expenses by category (interactive chart)
+- Add, edit, delete, search, filter and sort transactions
+- Export history to CSV and receive toast notifications for actions
+- Lightweight in-memory backend suitable for demos and local use
 
-- **Dashboard** -- View total balance, income, and expenses at a glance
-- **Transaction Management** -- Add, edit, and delete income/expense entries
-- **Category Tracking** -- Organize transactions by category (Food, Transport, Housing, Entertainment, Health, Shopping, Income, Other)
-- **Expense Chart** -- Interactive pie chart visualization of expenses by category
-- **Search & Filter** -- Search transactions by description, filter by category
-- **Sort** -- Sort transactions by date or amount (ascending/descending)
-- **CSV Export** -- Export transaction history to CSV file
-- **Toast Notifications** -- Real-time success/error feedback
-- **Error Boundary** -- Graceful error handling with recovery option
+## Technologies
 
-## Tech Stack
+- Frontend: React (Hooks + Context), Recharts for charts, React Hot Toast
+- Backend: .NET 9 Minimal API using a simple in-memory store
+- Styling: Plain CSS tuned for clarity and responsiveness
 
-### Frontend
-- React 16 with Hooks & Context API
-- Recharts (pie chart visualization)
-- React Hot Toast (notifications)
-- CSS3 (custom styling, responsive)
+## Quick Start
 
-### Backend
-- .NET 9 Minimal API
-- Clean Architecture (Domain / Application / Api layers)
-- In-memory data store
-- RESTful endpoints with filtering & sorting
+Prerequisites: Node.js (v14+) and .NET 9 SDK.
 
-## Project Structure
-
-```
-ExpenseTracker/
-├── expense-tracker/          # React frontend
-│   ├── src/
-│   │   ├── components/       # Reusable UI components (Button, Input, Modal, Select)
-│   │   ├── features/         # Transaction feature (list, form, chart, edit modal)
-│   │   ├── services/         # API client
-│   │   ├── store/            # Context API + useReducer state management
-│   │   └── utils/            # Formatting, categories, CSV export
-│   └── public/
-├── ExpenseTracker.Api/       # .NET backend
-│   ├── Api/Endpoints/        # Minimal API route definitions
-│   ├── Application/          # DTOs, interfaces, services
-│   └── Domain/               # Transaction entity
-└── README.md
-```
-
-## Getting Started
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v14+)
-- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
-
-### Run the Backend
+1) Start the API
 
 ```bash
 cd ExpenseTracker.Api
 dotnet run
 ```
 
-The API starts at `http://localhost:5200`.
+The API will listen on http://localhost:5200 by default.
 
-### Run the Frontend
+2) Start the frontend
 
 ```bash
 cd expense-tracker
@@ -74,15 +37,38 @@ npm install
 npm start
 ```
 
-The app opens at `http://localhost:3000`.
+Open http://localhost:3000 to use the app.
 
-## API Endpoints
+## Project Layout
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/transactions` | Get all transactions (supports `?category=`, `?sort=`, `?order=`) |
-| GET | `/api/transactions/summary` | Get balance, income, expense totals |
-| GET | `/api/transactions/{id}` | Get transaction by ID |
-| POST | `/api/transactions` | Create a new transaction |
-| PUT | `/api/transactions/{id}` | Update a transaction |
-| DELETE | `/api/transactions/{id}` | Delete a transaction |
+Top-level structure (simplified):
+
+```
+manage-your-finances/
+├─ expense-tracker/    # React app
+│  ├─ public/
+│  └─ src/
+│     ├─ components/    # UI building blocks
+│     ├─ features/      # Transactions feature (list, form, chart)
+│     ├─ services/      # API client
+│     └─ utils/         # helpers: formatting, CSV export, categories
+└─ ExpenseTracker.Api/  # .NET Minimal API backend
+```
+
+## API Overview
+
+Common endpoints provided by the backend:
+
+- `GET  /api/transactions` — list transactions (supports `?category=`, `?sort=`, `?order=`)
+- `GET  /api/transactions/summary` — totals for balance, income, expenses
+- `GET  /api/transactions/{id}` — get a single transaction
+- `POST /api/transactions` — create a new transaction
+- `PUT  /api/transactions/{id}` — update an existing transaction
+- `DELETE /api/transactions/{id}` — remove a transaction
+
+## Notes
+
+- The backend uses an in-memory store by default (suitable for demos). Persisting data requires swapping to a database.
+- Feel free to adapt the UI and API routes to fit production needs.
+
+If you want, I can also update the `package.json` name fields and the repo description to match "Manage Your Finances".
